@@ -1,5 +1,4 @@
 README.md
-By the end of the first week of the project I want each git repo to have a README.md file that answers the following questions:
 Title of the project
 Riddlr
 Goal of the project

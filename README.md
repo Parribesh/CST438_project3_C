@@ -1,41 +1,41 @@
-# CST438_project3_C
 README.md
-
+By the end of the first week of the project I want each git repo to have a README.md file that answers the following questions:
 Title of the project
-
 Riddlr
-
 Goal of the project
-
 Provide users with the ability to solve, rate and discuss riddles.
-
 Who is on the team
-
 Francisco Hernandez (fjhernan)
-
 https://github.com/fjhernan
-
-Paribesh Neupane(Parribesh)
-
+Paribesh Neupane(Parribesh) 
 https://github.com/Parribesh
-
-William White(UncertainTitle)
-
+William White(UncertainTitle) 
 https://github.com/UncertainTitle
-
 Wayne Hayden(enyaw15)
-
-https://github.com/enyaw15
+https://github.com/enyaw15 
 The minimum viable product
-
 An app for solving, rating, and discussing riddles. The app will have user profiles, riddles, and the ability to solve, save, and search for riddles.
-This should tie in with the goal. If the goal is to offer social media for cats (Clowder Connector), than it would be something like 'create a profile and share stories'
 I want a timeline for completion with goals
-These goals should relate to the user stories that you have on your project board
-The timeline should be updated as the project progresses
+Backend Deploy - 2 Weeks
+Persistent Database - 2 Weeks
+Create Database - 2 Weeks
+Create/Register a User - 2 Weeks
+User Login - 2 Weeks
+User Authentication - 2 Weeks
+Save riddles to user profile - 3 Weeks
+Allow user to delete riddles they make - 3 Weeks
+Allow users create riddles - 3 Weeks
+Create Admin account - 2 Weeks
+Create API - 2 Weeks
+Allow admin to add/delete users - 3 Weeks
+Allow admin to delete any riddles they made - 3 Weeks
+Solve Riddle - Reveal riddle answer when user enters correct solution or when user gives up. - 3 Weeks
+Solve Riddle - Get random riddle from database - 4 Weeks
+Search for riddles - 3 Weeks
 Mockups and ERDs from the proposal
-These may need to be improved from the proposal
-I also want these to be kept CURRENT that means if the database structure changes, the ERDs will need to change.
+
+
 A list of technologies and links to them
-We are using Android so a link to that is a bare minimum
+Android
+Firebase
 Include any and all APIs you are using

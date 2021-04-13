@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.CST438_project3_C;
 
 import androidx.appcompat.app.AppCompatActivity;
 

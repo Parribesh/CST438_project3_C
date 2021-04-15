@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         testFirebase();
-    }
+
 
     private void testFirebase(){
         / Create a new user with a first and last name

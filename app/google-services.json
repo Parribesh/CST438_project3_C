@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "100905629481",
+    "project_id": "riddlr-project3",
+    "storage_bucket": "riddlr-project3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100905629481:android:0acf943b7f1f9522d96938",
+        "android_client_info": {
+          "package_name": "com.example.CST438_project3_c"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100905629481-2gobg9nv1a2ta71pjjq3gjl7pt68rr7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1S0ERyrePyGHjTfZdro4RH7l1i7o0_OU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100905629481-2gobg9nv1a2ta71pjjq3gjl7pt68rr7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

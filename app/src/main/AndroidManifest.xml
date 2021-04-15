@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".LoginActivity"></activity>
+        <activity
+            android:name=".SolveRiddleActivity"
+            android:label="@string/title_activity_solve_riddle"
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".CreateUserActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UserCreateRiddleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

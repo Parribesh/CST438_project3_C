@@ -15,7 +15,7 @@ import com.example.CST438_project3_C.data.UserDAO;
 import com.example.CST438_project3_C.data.UserDatabase;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class  LoginActivity extends AppCompatActivity {
 
     private EditText eName;
     private EditText ePassword;

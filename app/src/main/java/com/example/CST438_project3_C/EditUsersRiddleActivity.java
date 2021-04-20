@@ -15,6 +15,7 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(EDIT_USERS_RIDDLE_ACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
-        //random text stuff
+        setContentView(R.layout.activity_edit_user_riddle_activity);
+
     }
 }

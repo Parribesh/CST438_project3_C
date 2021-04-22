@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Enter name"
+        android:hint="Enter Email"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:inputType="textPersonName"

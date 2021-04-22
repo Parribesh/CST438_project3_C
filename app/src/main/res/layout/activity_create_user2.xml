@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/bg">
+
 
     <EditText
         android:id="@+id/etName"
@@ -12,6 +14,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +31,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -36,8 +41,8 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="96dp"
-        android:layout_height="38dp"
+        android:layout_width="169dp"
+        android:layout_height="46dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome!! Please Sign Up"
+        android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/etName"
         app:layout_constraintEnd_toEndOf="parent"

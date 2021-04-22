@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        eLogin = findViewById(R.id.btnLogin);
+        eRegister = findViewById(R.id.btnRegister);
+        eCreateRiddle = findViewById(R.id.btnCreateRiddle);
+        eSolveRiddle = findViewById(R.id.btnSolveRiddle);
 
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         eCreateRiddle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

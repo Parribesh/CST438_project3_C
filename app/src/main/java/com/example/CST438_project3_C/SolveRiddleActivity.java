@@ -18,6 +18,7 @@ public class SolveRiddleActivity extends AppCompatActivity {
     private int maxTries = 3;
     private int attemptsLeft;
     private String guess = null;
+    //Comment for Commit
 
     //----------------------------------------------------------------------------------------
     //onCreate

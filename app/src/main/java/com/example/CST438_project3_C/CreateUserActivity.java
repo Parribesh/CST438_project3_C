@@ -1,6 +1,7 @@
 package com.example.CST438_project3_C;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
@@ -15,10 +16,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.CST438_project3_C.data.User;
-import com.example.CST438_project3_C.data.UserDAO;
-import com.example.CST438_project3_C.data.UserDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.net.PasswordAuthentication;
 
 public class CreateUserActivity extends AppCompatActivity {
 
@@ -28,7 +33,7 @@ public class CreateUserActivity extends AppCompatActivity {
     private EditText ePassword;
     private Button eRegister;
 
-    FirebaseDatabase fd;
+    private FirebaseAuth mAuth;
     DatabaseReference dr;
 
     @Override
@@ -40,19 +45,42 @@ public class CreateUserActivity extends AppCompatActivity {
         ePassword = findViewById(R.id.etPassword);
         eRegister = findViewById(R.id.btnLogin);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         eRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fd = FirebaseDatabase.getInstance();
-                dr = fd.getReference("users");
 
-                String userName = eName.getText().toString();
-                String password = ePassword.getText().toString();
+                String userName = eName.getText().toString().trim();
+                String password = ePassword.getText().toString().trim();
+                mAuth.createUserWithEmailAndPassword(userName, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                           @Override
+                           public void onComplete(@NonNull Task<AuthResult> task) {
+                               if(task.isSuccessful()){
+                                   User user = new User(userName, password);
+                                   FirebaseDatabase.getInstance().getReference("users")
+                                           .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                           .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                       @Override
+                                       public void onComplete(@NonNull Task<Void> task) {
+                                           if(task.isSuccessful()){
+                                               Toast.makeText(CreateUserActivity.this, "user has been registered", Toast.LENGTH_LONG).show();
+                                           }else{
+                                               Toast.makeText(CreateUserActivity.this, "user has not been registered", Toast.LENGTH_LONG).show();
 
-                User user = new User(userName, password);
-                dr.setValue(user);
+                                           }
+                                       }
+                                   });
+                               }else{
+                                   Toast.makeText(CreateUserActivity.this, "Email or password not right", Toast.LENGTH_LONG).show();
+
+                               }
+                           }
+                       }
+                        );
+//                User user = new User(userName, password);
+//                dr.setValue(user);
 
             }
 

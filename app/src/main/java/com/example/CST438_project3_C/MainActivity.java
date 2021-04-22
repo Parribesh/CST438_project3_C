@@ -4,16 +4,59 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button eLogin;
+    private Button eRegister;
+    private Button eCreateRiddle;
+    private Button eSolveRiddle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        eLogin = findViewById(R.id.btnLogin);
+        eRegister = findViewById(R.id.btnRegister);
+        eCreateRiddle = findViewById(R.id.btnCreateRiddle);
+        eSolveRiddle = findViewById(R.id.btnSolveRiddle);
 
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
+        eLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        eRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateUserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        eCreateRiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserCreateRiddleActivity.class);
+                startActivity(intent);
+            }
+        });
+        eSolveRiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SolveRiddleActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }

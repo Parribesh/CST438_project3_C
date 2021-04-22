@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
  */
 public class UserCreateRiddleActivity extends AppCompatActivity {
     public static final String USER_CREATE_RIDDLE_ACTIVITY = "UserCreateRiddleActivity";
+    private String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,34 +39,39 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String msg = "";
                 Toast t;
-                boolean check = false;
-                if(eRiddle.getText().toString().isEmpty()){
-                    msg += "You can't upload a blank riddle!\n";
-                    check = true;
-                } else{
-                    msg += "You made a riddle!\n";
-                }
-                if(eAnswer.getText().toString().isEmpty()){
-                    msg += "You can't upload a riddle without an answer!";
-                    check = true;
-                } else{
-                    msg += "You have an answer!";
-                }
-                if(check == false){
-                    t = Toast.makeText(UserCreateRiddleActivity.this, msg,
-                            Toast.LENGTH_LONG);
-                    t.show();
-                } else{
-                    t = Toast.makeText(UserCreateRiddleActivity.this, msg,
+                boolean check = checkRiddles(eRiddle.getText().toString(),
+                        eAnswer.getText().toString());
+                if(!check){
+                    //If everything is good
+                    t = Toast.makeText(UserCreateRiddleActivity.this, ":)",
                             Toast.LENGTH_LONG);
                     t.show();
                     /*
                       Code for adding to database will go here
                      */
+                } else{
+                    //If everything is not good
+                    t = Toast.makeText(UserCreateRiddleActivity.this, msg,
+                            Toast.LENGTH_LONG);
+                    t.show();
+                    msg = "";
                 }
             }
         });
     }
+
+    private boolean checkRiddles(String riddle, String solution){
+        boolean check = false;
+        if(riddle.isEmpty()){
+            check = true;
+            msg += "You can't upload a blank riddle!\n";
+        }
+        if(solution.isEmpty()){
+            check = true;
+            msg += "You can't upload a riddle without a solution!";
+        }
+        return check;
+    }
+
 }

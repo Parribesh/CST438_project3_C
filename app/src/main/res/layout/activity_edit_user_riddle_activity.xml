@@ -21,8 +21,8 @@
 
     <EditText
         android:id="@+id/user_edit_riddle"
-        android:layout_width="365dp"
-        android:layout_height="59dp"
+        android:layout_width="366dp"
+        android:layout_height="115dp"
         android:ems="10"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -35,8 +35,8 @@
 
     <EditText
         android:id="@+id/user_edit_solution"
-        android:layout_width="365dp"
-        android:layout_height="59dp"
+        android:layout_width="360dp"
+        android:layout_height="106dp"
         android:ems="10"
         android:textSize="25sp"
         android:textStyle="bold"

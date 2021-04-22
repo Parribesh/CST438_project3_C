@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class EditUsersRiddleActivity extends AppCompatActivity {
     public static final String EDIT_USERS_RIDDLE_ACTIVITY = "EditUsersRiddleActivity";
-    private String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,10 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast t;
-                boolean check = checkRiddles(eRiddle.getText().toString(),
-                        eAnswer.getText().toString());
-                if(!check){
+                boolean checkR = checkRiddle(eRiddle.getText().toString());
+                boolean checkS = checkSolution(eAnswer.getText().toString());
+
+                if(!checkR && !checkS){
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditUsersRiddleActivity.this);
                     builder.setMessage("Have you finished editing your riddle?");
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -63,25 +63,33 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
                     });
                     builder.show();
                 } else {
+                    //Something wrong with the Riddle and its Solution
+                    String msg = "";
+                    if(checkR){
+                        msg += "Riddle can't be blank!\n";
+                    }
+                    if(checkS){
+                        msg += "You can't have a riddle without an solution!";
+                    }
                     t = Toast.makeText(EditUsersRiddleActivity.this, msg,
                             Toast.LENGTH_LONG);
                     t.show();
-                    msg = "";
                 }
             }
         });
     }
 
-    private boolean checkRiddles(String riddle, String solution){
-        boolean check = false;
+    private boolean checkRiddle(String riddle){
         if(riddle.isEmpty()){
-            check = true;
-            msg += "You can't upload a blank riddle!\n";
+            return true;
         }
+        return false;
+    }
+
+    private boolean checkSolution(String solution){
         if(solution.isEmpty()){
-            check = true;
-            msg += "You can't upload a riddle without a solution!";
+            return true;
         }
-        return check;
+        return false;
     }
 }

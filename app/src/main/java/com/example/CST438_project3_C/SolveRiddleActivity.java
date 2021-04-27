@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class SolveRiddleActivity extends AppCompatActivity {
@@ -17,8 +18,13 @@ public class SolveRiddleActivity extends AppCompatActivity {
     //------------------------------
     private String riddle, solution;
     private EditText guess;
+
+    private Button solveBtn;
+    private Button randomRiddleBtn;
+
     private int maxTries = 3;
     private int attemptsLeft;
+    private int randomNumber;
 
     //----------------------------------------------------------------------------------------
     //onCreate
@@ -42,6 +48,32 @@ public class SolveRiddleActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        solveBtn.setOnClickListener(new View.OnClickListener()
+        {
+           @Override
+           public void onClick(View view){
+               /*
+               * if(guess.Text.equals(solution){
+               *    print "That's correct!!!"
+               * }
+               * else{
+               *    print "Not quite the right answer. Try again!"
+               * }
+               * */
+           }
+        });
+
+        randomRiddleBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view){
+                //randomNumber = getRandomNumber();
+
+                //query database using number somehow
+                //set riddle and solution = returned riddle
             }
         });
     }

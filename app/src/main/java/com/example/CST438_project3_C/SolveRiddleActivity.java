@@ -9,16 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
 
 public class SolveRiddleActivity extends AppCompatActivity {
     //------------------------------
     //Variables
     //------------------------------
     private String riddle, solution;
+    private EditText guess;
     private int maxTries = 3;
     private int attemptsLeft;
-    private String guess = null;
-    //Comment for Commit
 
     //----------------------------------------------------------------------------------------
     //onCreate

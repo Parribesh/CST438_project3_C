@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CST438_project3_C.data.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,26 +47,13 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                 boolean checkR = checkRiddles(eRiddle.getText().toString());
                 boolean checkS = checkSolution(eAnswer.getText().toString());
                 if(!checkR && !checkS){
-                    DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("users");
-                    dr.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                if(dataSnapshot.toString().contains("fjhernan@gmail.com")) {
-                                    userKey = dataSnapshot.getKey();
-                                    DatabaseReference d = dr.child(dataSnapshot.getKey());
-                                    Map<String, Object> update = new HashMap<>();
-                                    update.put("Riddle","Testing");
-                                    d.updateChildren(update);
-                                }
-                            }
-                        }
+                    String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dr = FirebaseDatabase.getInstance()
+                            .getReference().child("Riddles").child(loggedUser);
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    Map<String, Object> update = new HashMap<>();
+                    update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
+                    dr.updateChildren(update);
                 } else{
                     //If everything is not good
                     String msg = "";

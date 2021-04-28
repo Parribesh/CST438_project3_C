@@ -47,6 +47,7 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                 boolean checkR = checkRiddles(eRiddle.getText().toString());
                 boolean checkS = checkSolution(eAnswer.getText().toString());
                 if(!checkR && !checkS){
+                    //If everything is good
                     String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     DatabaseReference dr = FirebaseDatabase.getInstance()
                             .getReference().child("Riddles").child(loggedUser);
@@ -54,6 +55,8 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                     Map<String, Object> update = new HashMap<>();
                     update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
                     dr.updateChildren(update);
+                    //Intent intent = new Intent(UserCreateRiddleActivity.this, NextActivity.class);
+                    //startActivity(intent);
                 } else{
                     //If everything is not good
                     String msg = "";

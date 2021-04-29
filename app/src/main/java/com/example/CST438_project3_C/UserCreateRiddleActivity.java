@@ -1,5 +1,6 @@
 package com.example.CST438_project3_C;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +32,6 @@ import java.util.Map;
  */
 public class UserCreateRiddleActivity extends AppCompatActivity {
     public static final String USER_CREATE_RIDDLE_ACTIVITY = "UserCreateRiddleActivity";
-    private String userKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +50,13 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                     //If everything is good
                     String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     DatabaseReference dr = FirebaseDatabase.getInstance()
-                            .getReference().child("Riddles").child(loggedUser);
+                            .getReference().child("riddles").child(loggedUser);
 
                     Map<String, Object> update = new HashMap<>();
                     update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
                     dr.updateChildren(update);
-                    //Intent intent = new Intent(UserCreateRiddleActivity.this, NextActivity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(UserCreateRiddleActivity.this, MainActivity.class);
+                    startActivity(intent);
                 } else{
                     //If everything is not good
                     String msg = "";

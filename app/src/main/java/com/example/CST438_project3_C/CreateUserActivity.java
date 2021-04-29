@@ -67,12 +67,14 @@ public class CreateUserActivity extends AppCompatActivity {
                                            if(task.isSuccessful()){
                                                Toast.makeText(CreateUserActivity.this, "user has been registered", Toast.LENGTH_LONG).show();
                                            }else{
-                                               Toast.makeText(CreateUserActivity.this, "user has not been registered", Toast.LENGTH_LONG).show();
+                                               Toast.makeText(CreateUserActivity.this, "Please check your credential/user not registered", Toast.LENGTH_LONG).show();
 
                                            }
                                        }
                                    });
                                }else{
+                                   eName.setError("Should be an Email/Invalid Email");
+                                   ePassword.setError("Password Should be atleast 6 char");
                                    Toast.makeText(CreateUserActivity.this, "Email or password not right", Toast.LENGTH_LONG).show();
 
                                }

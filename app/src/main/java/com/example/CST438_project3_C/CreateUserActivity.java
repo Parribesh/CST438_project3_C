@@ -67,7 +67,7 @@ public class CreateUserActivity extends AppCompatActivity {
                                            if(task.isSuccessful()){
                                                Toast.makeText(CreateUserActivity.this, "user has been registered", Toast.LENGTH_LONG).show();
                                            }else{
-                                               Toast.makeText(CreateUserActivity.this, "user has not been registered", Toast.LENGTH_LONG).show();
+                                               Toast.makeText(CreateUserActivity.this, "Please check your credential/user not registered", Toast.LENGTH_LONG).show();
 
                                            }
                                        }

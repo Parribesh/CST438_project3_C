@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
 
     private Button eEditUser;
     private Button eDeleteUser;
@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_admin);
         eEditUser = findViewById(R.id.btnEditUser);
         eDeleteUser = findViewById(R.id.btnRegister);
         eEditRiddle = findViewById(R.id.btnCreateRiddle);
         eDeleteRiddle = findViewById(R.id.btnSolveRiddle);
-
+/*
         eEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             }
         });
-
+*/
     }
 
 }

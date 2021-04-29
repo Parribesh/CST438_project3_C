@@ -73,6 +73,8 @@ public class CreateUserActivity extends AppCompatActivity {
                                        }
                                    });
                                }else{
+                                   eName.setError("Should be an Email/Invalid Email");
+                                   ePassword.setError("Password Should be atleast 6 char");
                                    Toast.makeText(CreateUserActivity.this, "Email or password not right", Toast.LENGTH_LONG).show();
 
                                }

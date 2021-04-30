@@ -64,8 +64,12 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                                         DataSnapshot dataSnapshot = task.getResult();
                                         int i = 0;
                                         for(DataSnapshot data : dataSnapshot.getChildren()){
+                                            if(i != Integer.parseInt(data.getKey()))
+                                                break;
+
                                             i++;
                                         }
+
                                         Map<String, Object> update = new HashMap<>();
                                         update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
                                         dr.child(String.valueOf(i)).updateChildren(update);

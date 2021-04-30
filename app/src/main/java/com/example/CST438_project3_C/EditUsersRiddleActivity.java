@@ -2,6 +2,7 @@ package com.example.CST438_project3_C;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -38,7 +39,7 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_riddle_activity);
 
-        String riddleID = "7";
+        String riddleID = "0";
         String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference()
                 .child("riddles").child(loggedUser).child(riddleID);
@@ -74,23 +75,12 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //finish activity
-                            /*FirebaseDatabase.getInstance().getReference().child("riddles")
-                                    .child(loggedUser).get()
-                                    .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                            if(task.isSuccessful()){
-                                                DataSnapshot dataSnapshot = task.getResult();
-                                                int i = 0;
-                                                for(DataSnapshot data : dataSnapshot.getChildren()){
-                                                    i++;
-                                                }
-                                                Map<String, Object> update = new HashMap<>();
-                                                update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
-                                                dr.child(String.valueOf(i)).updateChildren(update);
-                                            }
-                                        }
-                                    });*/
+                            Map<String, Object> change = new HashMap<>();
+                            change.put(eRiddle.getText().toString(), eAnswer.getText().toString());
+                            dr.setValue(change);
+
+                            Intent intent = new Intent(EditUsersRiddleActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     });
                     builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

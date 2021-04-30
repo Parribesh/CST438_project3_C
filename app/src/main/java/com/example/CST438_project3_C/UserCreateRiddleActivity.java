@@ -2,6 +2,7 @@ package com.example.CST438_project3_C;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CST438_project3_C.data.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,9 +55,24 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                     DatabaseReference dr = FirebaseDatabase.getInstance()
                             .getReference().child("riddles").child(loggedUser);
 
-                    Map<String, Object> update = new HashMap<>();
-                    update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
-                    dr.updateChildren(update);
+                    FirebaseDatabase.getInstance().getReference().child("riddles")
+                            .child(loggedUser).get()
+                            .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        DataSnapshot dataSnapshot = task.getResult();
+                                        int i = 0;
+                                        for(DataSnapshot data : dataSnapshot.getChildren()){
+                                            i++;
+                                        }
+                                        Map<String, Object> update = new HashMap<>();
+                                        update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
+                                        dr.child(String.valueOf(i)).updateChildren(update);
+                                    }
+                                }
+                            });
+
                     Intent intent = new Intent(UserCreateRiddleActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else{

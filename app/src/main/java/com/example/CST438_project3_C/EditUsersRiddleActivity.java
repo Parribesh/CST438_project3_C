@@ -9,8 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This activity lets users edit riddles they created.
@@ -28,6 +39,8 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
             code will go here
 
          */
+        String originalRiddle = "";
+
         EditText eRiddle = findViewById(R.id.user_edit_riddle);
         EditText eAnswer = findViewById(R.id.user_edit_solution);
         eRiddle.setText("Hello, this is where the riddle will go!");
@@ -47,6 +60,30 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //finish activity
+                            String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            DatabaseReference dr = FirebaseDatabase.getInstance().getReference()
+                                    .child("riddles").child(loggedUser);
+
+                            dr.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for(DataSnapshot snap : snapshot.getChildren()){
+                                        if(snap.getKey() == originalRiddle){
+                                            Map<String, Object> update = new HashMap<>();
+                                            update.put(eRiddle.getText().toString(),
+                                                    eAnswer.getText().toString());
+                                            dr.child(snap.getKey()).setValue(update);
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
                             Toast p = Toast.makeText(EditUsersRiddleActivity.this, ":)",
                                     Toast.LENGTH_LONG);
                             p.show();

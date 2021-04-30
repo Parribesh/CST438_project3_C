@@ -3,6 +3,7 @@ package com.example.CST438_project3_C;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,17 +37,28 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
         Log.d(EDIT_USERS_RIDDLE_ACTIVITY, "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_riddle_activity);
-        /*Get riddle/answer from database and display it
 
-            code will go here
-
-         */
-        String originalRiddle = "";
+        String riddleID = "7";
+        String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference()
+                .child("riddles").child(loggedUser).child(riddleID);
 
         EditText eRiddle = findViewById(R.id.user_edit_riddle);
         EditText eAnswer = findViewById(R.id.user_edit_solution);
-        eRiddle.setText("Hello, this is where the riddle will go!");
-        eAnswer.setText("Hello, this is where the solution will go!");
+
+        dr.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if(task.isSuccessful()){
+                    String value = task.getResult().getValue().toString();
+                    String edited = value.substring(1, value.length()-1);
+                    String [] strings = edited.split("=", 2);
+                    eRiddle.setText(strings[0]);
+                    eAnswer.setText(strings[1]);
+                }
+            }
+        });
+
         Button finished = findViewById(R.id.user_edit_finish_button);
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,33 +74,23 @@ public class EditUsersRiddleActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //finish activity
-                            String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            DatabaseReference dr = FirebaseDatabase.getInstance().getReference()
-                                    .child("riddles").child(loggedUser);
-
-                            dr.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for(DataSnapshot snap : snapshot.getChildren()){
-                                        if(snap.getKey() == originalRiddle){
-                                            Map<String, Object> update = new HashMap<>();
-                                            update.put(eRiddle.getText().toString(),
-                                                    eAnswer.getText().toString());
-                                            dr.child(snap.getKey()).setValue(update);
+                            /*FirebaseDatabase.getInstance().getReference().child("riddles")
+                                    .child(loggedUser).get()
+                                    .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                            if(task.isSuccessful()){
+                                                DataSnapshot dataSnapshot = task.getResult();
+                                                int i = 0;
+                                                for(DataSnapshot data : dataSnapshot.getChildren()){
+                                                    i++;
+                                                }
+                                                Map<String, Object> update = new HashMap<>();
+                                                update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
+                                                dr.child(String.valueOf(i)).updateChildren(update);
+                                            }
                                         }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
-
-
-                            Toast p = Toast.makeText(EditUsersRiddleActivity.this, ":)",
-                                    Toast.LENGTH_LONG);
-                            p.show();
+                                    });*/
                         }
                     });
                     builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

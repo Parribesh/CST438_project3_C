@@ -1,17 +1,31 @@
 package com.example.CST438_project3_C;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CST438_project3_C.data.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This activity lets a user create and upload a riddle
@@ -24,48 +38,76 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Log.d doesn't work for some reason.
-        //Log.d(USER_CREATE_RIDDLE_ACTIVITY, "onCreate Called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_create_riddle);
 
         EditText eRiddle = findViewById(R.id.user_create_riddle_riddle);
         EditText eAnswer = findViewById(R.id.user_create_riddle_answer);
-        //for some reason these variables don't actually save data
-        //String riddle = eRiddle.getText().toString();
-        //String answer = eAnswer.getText().toString();
         Button upload = findViewById(R.id.user_create_riddle_button);
         upload.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String msg = "";
-                Toast t;
-                boolean check = false;
-                if(eRiddle.getText().toString().isEmpty()){
-                    msg += "You can't upload a blank riddle!\n";
-                    check = true;
+                boolean checkR = checkRiddles(eRiddle.getText().toString());
+                boolean checkS = checkSolution(eAnswer.getText().toString());
+                if(!checkR && !checkS){
+                    //If everything is good
+                    String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference dr = FirebaseDatabase.getInstance()
+                            .getReference().child("riddles").child(loggedUser);
+
+                    FirebaseDatabase.getInstance().getReference().child("riddles")
+                            .child(loggedUser).get()
+                            .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        DataSnapshot dataSnapshot = task.getResult();
+                                        int i = 0;
+                                        for(DataSnapshot data : dataSnapshot.getChildren()){
+                                            if(i != Integer.parseInt(data.getKey()))
+                                                break;
+
+                                            i++;
+                                        }
+
+                                        Map<String, Object> update = new HashMap<>();
+                                        update.put(eRiddle.getText().toString(), eAnswer.getText().toString());
+                                        dr.child(String.valueOf(i)).updateChildren(update);
+                                    }
+                                }
+                            });
+
+                    Intent intent = new Intent(UserCreateRiddleActivity.this, EditUsersRiddleActivity.class);
+                    startActivity(intent);
                 } else{
-                    msg += "You made a riddle!\n";
-                }
-                if(eAnswer.getText().toString().isEmpty()){
-                    msg += "You can't upload a riddle without an answer!";
-                    check = true;
-                } else{
-                    msg += "You have an answer!";
-                }
-                if(check == false){
-                    t = Toast.makeText(UserCreateRiddleActivity.this, msg,
+                    //If everything is not good
+                    String msg = "";
+                    if(checkR){
+                        msg += "Riddle can't be blank!\n";
+                    }
+                    if(checkS){
+                        msg += "You can't have a riddle without a solution!";
+                    }
+                    Toast t = Toast.makeText(UserCreateRiddleActivity.this, msg,
                             Toast.LENGTH_LONG);
                     t.show();
-                } else{
-                    t = Toast.makeText(UserCreateRiddleActivity.this, msg,
-                            Toast.LENGTH_LONG);
-                    t.show();
-                    /*
-                      Code for adding to database will go here
-                     */
                 }
             }
         });
     }
+
+    private boolean checkRiddles(String riddle){
+        if(riddle.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkSolution(String solution){
+        if(solution.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
 }

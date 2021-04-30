@@ -16,7 +16,9 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".CreateUserActivity" />
+        
         <activity android:name=".MainActivity">
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +33,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".AdminActivity"/>
+        
+          <activity android:name=".EditUsersRiddleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+            
+        
 
     </application>
 

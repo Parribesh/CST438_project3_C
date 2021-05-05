@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +30,15 @@ public class UserDeleteRiddleActivity extends AppCompatActivity {
         dr.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                
+                if(task.isSuccessful()){
+                    Toast p;
+                    DataSnapshot snapshot = task.getResult();
+                    for(DataSnapshot snap : snapshot.getChildren()){
+                        p = Toast.makeText(UserDeleteRiddleActivity.this, snap.getKey()
+                                , Toast.LENGTH_LONG);
+                        p.show();
+                    }
+                }
             }
         });
 /*

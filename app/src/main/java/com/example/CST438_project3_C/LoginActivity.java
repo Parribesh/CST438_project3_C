@@ -48,24 +48,32 @@ public class  LoginActivity extends AppCompatActivity {
         ePassword = findViewById(R.id.etPassword);
         eLogin = findViewById(R.id.btnLogin);
         eRegister = findViewById(R.id.btnRegister);
-
         mAuth = FirebaseAuth.getInstance();
+
+
+
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Toast.makeText(LoginActivity.this, "user found", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, PersonalActivity.class);
+            startActivity(intent);
+        }
 
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inputName = eName.getText().toString().trim();
-                String inputPassword = ePassword.getText().toString().trim();
 
-                if(inputName.isEmpty() || inputPassword.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+                    String inputName = eName.getText().toString().trim();
+                    String inputPassword = ePassword.getText().toString().trim();
 
-                }else{
-                     validate(inputName, inputPassword);
+                    if (inputName.isEmpty() || inputPassword.isEmpty()) {
+                        Toast.makeText(LoginActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        validate(inputName, inputPassword);
+
+                    }
 
                 }
-
-            }
         });
 
         eRegister.setOnClickListener(new View.OnClickListener() {
@@ -80,11 +88,12 @@ public class  LoginActivity extends AppCompatActivity {
     private void validate(String name, String password){
         fd = FirebaseDatabase.getInstance();
         dr = fd.getReference("users");
+
         mAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(LoginActivity.this, UserCreateRiddleActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, PersonalActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, "Login not Successfull!!", Toast.LENGTH_LONG).show();

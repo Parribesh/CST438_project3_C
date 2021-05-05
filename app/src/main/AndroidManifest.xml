@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.CST438_project3_C">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,15 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".PersonalActivity"></activity>
         <activity
             android:name=".SolveRiddleActivity"
             android:label="@string/title_activity_solve_riddle"
-            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CreateUserActivity" />
-        
         <activity android:name=".MainActivity">
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,19 +32,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminActivity"/>
-        
-          <activity android:name=".EditUsersRiddleActivity">
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".EditUsersRiddleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
-            
-        
-
     </application>
 
 </manifest>

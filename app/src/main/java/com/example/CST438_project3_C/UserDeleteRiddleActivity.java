@@ -34,7 +34,8 @@ public class UserDeleteRiddleActivity extends AppCompatActivity {
                     Toast p;
                     DataSnapshot snapshot = task.getResult();
                     for(DataSnapshot snap : snapshot.getChildren()){
-                        p = Toast.makeText(UserDeleteRiddleActivity.this, snap.getKey()
+                        String data = snap.getValue().toString();
+                        p = Toast.makeText(UserDeleteRiddleActivity.this, data
                                 , Toast.LENGTH_LONG);
                         p.show();
                     }

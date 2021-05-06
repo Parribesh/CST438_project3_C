@@ -22,10 +22,10 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <Button
-        android:id="@+id/btnDeleteRiddle"
+        android:id="@+id/btnManageRiddles"
         android:layout_width="145dp"
         android:layout_height="60dp"
-        android:text="Delete Riddle"
+        android:text="Manage Riddles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.161"
@@ -34,10 +34,10 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <Button
-        android:id="@+id/btnEditRiddle"
+        android:id="@+id/btnManageUsers"
         android:layout_width="145dp"
         android:layout_height="60dp"
-        android:text="Edit Riddle"
+        android:text="Manage Users"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.853"
@@ -46,10 +46,10 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <Button
-        android:id="@+id/btnDeleteUser"
+        android:id="@+id/btnHome"
         android:layout_width="145dp"
         android:layout_height="60dp"
-        android:text="Delete User"
+        android:text="Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.161"
@@ -58,10 +58,10 @@
         app:layout_constraintVertical_bias="0.861" />
 
     <Button
-        android:id="@+id/btnEditUser"
+        android:id="@+id/btnManageAdmin"
         android:layout_width="145dp"
         android:layout_height="60dp"
-        android:text="Edit User"
+        android:text="Manage Account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.853"

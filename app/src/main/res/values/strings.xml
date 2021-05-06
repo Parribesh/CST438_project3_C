@@ -19,4 +19,5 @@
     <string name="solveBtn">Solve</string>
     <string name="randomRiddleBtn">Get a random riddle!</string>
     <string name="giveUpBtn">Give up</string>
+    <string name="title_activity_admin_edit_user">AdminEditUserActivity</string>
 </resources>

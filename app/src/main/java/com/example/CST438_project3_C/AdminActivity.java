@@ -12,38 +12,40 @@ import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private Button eEditUser;
-    private Button eDeleteUser;
-    private Button eEditRiddle;
-    private Button eDeleteRiddle;
+    private Button eManageUsers;
+    private Button eManageRiddles;
+    private Button eHome;
+    private Button eManageAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        eEditUser = findViewById(R.id.btnEditUser);
-        eDeleteUser = findViewById(R.id.btnRegister);
-        eEditRiddle = findViewById(R.id.btnCreateRiddle);
-        eDeleteRiddle = findViewById(R.id.btnSolveRiddle);
+        eManageUsers = findViewById(R.id.btnManageUsers);
+        eManageRiddles = findViewById(R.id.btnManageRiddles);
+        eHome = findViewById(R.id.btnHome);
+        eManageAccount = findViewById(R.id.btnManageAdmin);
+
+        eManageUsers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, AdminSerachUsers.class);
+                startActivity(intent);
+            }
+        });
 /*
-        eEditUser.setOnClickListener(new View.OnClickListener() {
+        eManageRiddles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
 
-        eDeleteUser.setOnClickListener(new View.OnClickListener() {
+        eHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
-
-        eEditRiddle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        eDeleteRiddle.setOnClickListener(new View.OnClickListener() {
+        eManageAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }

@@ -13,6 +13,7 @@
     <!-- Strings used for Solve Riddle Activity -->
     <string name="RiddleTextPlaceholder">Riddle Text</string>
     <string name="solutionTextPlaceholder">Riddle Solution Text</string>
+    <string name="scoreTextPlaceholder">Score Text</string>
 
     <string name="solutionPrompt">Enter your guess here!</string>
 

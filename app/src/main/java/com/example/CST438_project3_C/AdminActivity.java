@@ -2,12 +2,8 @@ package com.example.CST438_project3_C;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -23,7 +19,7 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         eEditUser = findViewById(R.id.btnEditUser);
         eDeleteUser = findViewById(R.id.btnRegister);
-        eEditRiddle = findViewById(R.id.btnCreateRiddle);
+        eEditRiddle = findViewById(R.id.btnCreateRdl);
         eDeleteRiddle = findViewById(R.id.btnSolveRiddle);
 /*
         eEditUser.setOnClickListener(new View.OnClickListener() {

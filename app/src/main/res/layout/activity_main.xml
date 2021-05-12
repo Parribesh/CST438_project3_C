@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.73" />
 
     <Button
-        android:id="@+id/btnCreateRiddle"
+        android:id="@+id/btnCreateRdl"
         android:layout_width="145dp"
         android:layout_height="60dp"
         android:text="Create Riddle"

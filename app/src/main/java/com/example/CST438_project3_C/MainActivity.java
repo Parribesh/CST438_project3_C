@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button eCreateRiddle;
     private Button eSolveRiddle;
     private Button eAdmin;
+    private Button eDeleteRiddle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         eCreateRiddle = findViewById(R.id.btnCreateRdl);
         eSolveRiddle = findViewById(R.id.btnSolveRiddle);
         eAdmin = findViewById(R.id.btnAdmin);
+        eDeleteRiddle = findViewById(R.id.btnDeleteRiddle);
 
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        eDeleteRiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserDeleteRiddleActivity.class);
                 startActivity(intent);
             }
         });

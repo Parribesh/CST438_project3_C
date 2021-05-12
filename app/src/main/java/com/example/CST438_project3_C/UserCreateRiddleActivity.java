@@ -77,7 +77,7 @@ public class UserCreateRiddleActivity extends AppCompatActivity {
                                 }
                             });
 
-                    Intent intent = new Intent(UserCreateRiddleActivity.this, EditUsersRiddleActivity.class);
+                    Intent intent = new Intent(UserCreateRiddleActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else{
                     //If everything is not good

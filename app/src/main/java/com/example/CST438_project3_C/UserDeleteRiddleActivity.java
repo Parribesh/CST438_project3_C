@@ -43,6 +43,7 @@ public class UserDeleteRiddleActivity extends AppCompatActivity {
         String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference dr = FirebaseDatabase.getInstance().getReference()
                 .child("riddles").child(loggedUser);
+        
         dr.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

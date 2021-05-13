@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button eCreateRiddle;
     private Button eSolveRiddle;
     private Button eAdmin;
+    private Button eDeleteRiddle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         eLogin = findViewById(R.id.btnLogin);
         eRegister = findViewById(R.id.btnRegister);
-        eCreateRiddle = findViewById(R.id.btnCreateRiddle);
+        eCreateRiddle = findViewById(R.id.btnCreateRdl);
         eSolveRiddle = findViewById(R.id.btnSolveRiddle);
         eAdmin = findViewById(R.id.btnAdmin);
+        eDeleteRiddle = findViewById(R.id.btnDeleteRiddle);
 
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        eDeleteRiddle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserDeleteRiddleActivity.class);
                 startActivity(intent);
             }
         });

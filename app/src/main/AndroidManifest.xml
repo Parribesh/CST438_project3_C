@@ -11,11 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+
         <activity android:name=".AdminSearchUsers"></activity>
+
         <activity
             android:name=".AdminEditUserActivity"
             android:label="@string/title_activity_admin_edit_user"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
+
+        <activity android:name=".PersonalActivity"></activity>
+
         <activity
             android:name=".SolveRiddleActivity"
             android:label="@string/title_activity_solve_riddle"
@@ -36,8 +41,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminActivity" />
-        <activity android:name=".EditUsersRiddleActivity">
+<<<<<<< HEAD
+        <activity android:name=".AdminActivity"
+        <activity android:name=".UserDeleteRiddleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".AdminActivity"/>
+        
+          <activity android:name=".EditUsersRiddleActivity"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

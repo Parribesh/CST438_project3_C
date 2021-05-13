@@ -22,13 +22,12 @@
         android:id="@+id/solveBtn"
         android:layout_width="247dp"
         android:layout_height="81dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginTop="476dp"
         android:text="@string/solveBtn"
         app:layout_constraintBottom_toTopOf="@+id/giveUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/riddleTextView"
@@ -46,13 +45,14 @@
         android:id="@+id/guessEditText"
         android:layout_width="340dp"
         android:layout_height="47dp"
+        android:layout_marginTop="360dp"
         android:hint="@string/solutionPrompt"
-        app:layout_constraintBottom_toTopOf="@+id/solveBtn"
+        app:layout_constraintBottom_toTopOf="@+id/scoreTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/solutionTextView"
@@ -75,6 +75,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.944" />
+        app:layout_constraintVertical_bias="0.99" />
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="215dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="440dp"
+        android:text="@string/scoreTextPlaceholder"
+        app:layout_constraintBottom_toTopOf="@+id/solveBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,13 +57,8 @@ public class PersonalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String loggedUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                DatabaseReference dr = FirebaseDatabase.getInstance()
-                        .getReference().child("riddles").child(loggedUser);
-
-
-//                Intent intent = new Intent(PersonalActivity.this, SolveRiddleActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(PersonalActivity.this, UserDeleteRiddleActivity.class);
+                startActivity(intent);
             }
         });
     }

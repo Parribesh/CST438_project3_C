@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".PersonalActivity"></activity>
         <activity
             android:name=".SolveRiddleActivity"
             android:label="@string/title_activity_solve_riddle"

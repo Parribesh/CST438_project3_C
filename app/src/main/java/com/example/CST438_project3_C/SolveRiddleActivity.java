@@ -155,7 +155,7 @@ public class SolveRiddleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 setSolutionText("Answer: " + solution);
-                alreadySolved = false;
+                alreadySolved = true;
             }
         });
     }
